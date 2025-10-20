@@ -17,11 +17,11 @@
   "dependencies": {
     "@sanity/cli": "^3.92.0",
     "@sanity/types": "^3.92.0",
-    "@sanity/vision": "^3.93.0",
+    "@sanity/vision": "^4.10.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-player": "^2.16.0",
-    "sanity": "^3.93.0",
+    "sanity": "^4.10.3",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
