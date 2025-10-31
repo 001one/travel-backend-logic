@@ -33,7 +33,13 @@ export const postType = defineType({
       of: [{ type: 'reference', to: [{ type: 'category' }] }],
       validation: (rule) => rule.required().min(1),
     }),
-
+ defineField({
+      name: 'excerpt', // ✅ New field added
+      type: 'text',
+      title: 'Excerpt',
+      description: 'A short summary for SEO and previews.',
+      validation: (rule) => rule.max(200), // Limit to 200 characters for SEO
+    }),
     // ✅ UPDATE HERE
     defineField({
       name: 'body',
