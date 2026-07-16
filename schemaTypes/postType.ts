@@ -8,41 +8,52 @@ export const postType = defineType({
     defineField({
       name: 'title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      title: 'Title',
+      validation: (rule) => rule.required().max(60), // SEO title limit
     }),
     defineField({
       name: 'slug',
       type: 'slug',
+      title: 'Slug',
       options: {source: 'title'},
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      title: 'Published At',
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-    }),
-     defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'category' }] }],
+      of: [{type: 'reference', to: [{type: 'category'}]}],
       validation: (rule) => rule.required().min(1),
     }),
- defineField({
-      name: 'excerpt', // ✅ New field added
+    defineField({
+      name: 'excerpt',
       type: 'text',
-      title: 'Excerpt',
-      description: 'A short summary for SEO and previews.',
-      validation: (rule) => rule.max(200), // Limit to 200 characters for SEO
+      title: 'Excerpt (SEO Description)',
+      description: 'Keep this under 150 characters (~20 words) for best Google display.',
+      rows: 3,
+      validation: (rule) =>
+        rule
+          .required()
+          .min(50)
+          .max(150)
+          .warning('Keep between 50–150 characters for best SEO results.'),
     }),
-    // ✅ UPDATE HERE
+    defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Cover Image (Optional)',
+      description: 'Used as the Open Graph image when sharing on social media.',
+    }),
     defineField({
       name: 'body',
+      title: 'Body',
       type: 'array',
       of: [
         {type: 'block'},
@@ -51,9 +62,17 @@ export const postType = defineType({
           options: {inline: true},
         },
         {
-          type: 'externalImage', // ✅ this enables image URL block
+          type: 'externalImage',
         },
       ],
     }),
+  ],
+  // Field order in Sanity Studio
+  orderings: [
+    {
+      title: 'Published Date, New',
+      name: 'publishedAtDesc',
+      by: [{field: 'publishedAt', direction: 'desc'}],
+    },
   ],
 })
