@@ -9,13 +9,16 @@ export const postType = defineType({
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: (rule) => rule.required().max(60), // SEO title limit
+      validation: (rule) => rule.required().max(60),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      options: {source: 'title'},
+      options: {
+        source: 'title',
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -67,7 +70,6 @@ export const postType = defineType({
       ],
     }),
   ],
-  // Field order in Sanity Studio
   orderings: [
     {
       title: 'Published Date, New',
