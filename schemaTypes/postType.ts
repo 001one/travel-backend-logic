@@ -9,7 +9,7 @@ export const postType = defineType({
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: (rule) => rule.required().max(60),
+      validation: (rule) => rule.required().max(100),
     }),
     defineField({
       name: 'slug',
