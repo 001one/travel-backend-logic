@@ -67,6 +67,7 @@ export const postType = defineType({
         {
           type: 'externalImage',
         },
+        {type: 'stlTableBlock'},
       ],
     }),
   ],

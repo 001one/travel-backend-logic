@@ -22,6 +22,9 @@
     "react-dom": "^19.1.0",
     "react-player": "^2.16.0",
     "sanity": "^4.22.0",
+    "sanity-plugin-stl-table": "^0.3.0",
+    "structured-table": "^0.3.0",
+    "structured-table-cli": "^0.2.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
